@@ -1,23 +1,14 @@
-const azure = require('azure-storage')
+import { KeyVaultClient, KeyVaultCredentials } from 'azure-keyvault';
+import { AuthenticationContext } from 'adal-node'
+import * as azure from 'azure-storage'
 
 module.exports = function (context, req) {
     context.log('JavaScript HTTP trigger function processed a request.');
 
-    const blobService = azure.createBlobService()
-
-    // Download text file from storage
-    blobService.getBlobToText('test-container', 'test.txt', function(error, result, response) {
-        if(!error) {
-            context.res = {
-                body: "Hello " + result
-            }
-        }
-        else {
-            context.res = {
-                status: 400,
-                body: error.message
-            }
-        }
-        context.done()
-    })
+    context.bindings.outputBlob = context.bindings.inputBlob
+    
+    context.res = {
+        body: "Moved blob successfully..."
+    }
+    context.done()
 }

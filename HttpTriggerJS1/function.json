@@ -11,6 +11,20 @@
       "type": "http",
       "direction": "out",
       "name": "res"
+    },
+    {
+      "name": "inputBlob",
+      "type": "blob",
+      "path": "test-container/test.txt",
+      "connection": "",
+      "direction": "in"
+    },
+    {
+      "name": "outputBlob",
+      "type": "blob",
+      "path": "test-container/test-Copy.txt",
+      "connection": "",
+      "direction": "out"
     }
   ]
 }
